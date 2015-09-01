@@ -19,7 +19,7 @@ trackerApp.controller('mapCtrl', function ($scope,$http,$interval) {
 			end:getEndTime()
 	}
 	$scope.showMarkers = function(marker){
-		if(!(parseFloat(marker.tracktime) * 1000 >= $scope.date.start.getTime() && parseFloat(marker.tracktime) *1000 <= $scope.date.end.getTime())){
+		if(!(parseFloat(marker.time) * 1000 >= $scope.date.start.getTime() && parseFloat(marker.time) *1000 <= $scope.date.end.getTime())){
 			return false;
 		}
 		if($scope.velocity.range == "any"){
@@ -50,7 +50,7 @@ trackerApp.controller('mapCtrl', function ($scope,$http,$interval) {
     };
 	$scope.markerExists = function(smarker){
 		for(var i = 0;i < $scope.markers.length;i++){
-			if($scope.markers[i].id == smarker.id){
+			if($scope.markers[i].time == smarker.time){
 				return true;
 			}
 		}
@@ -69,7 +69,7 @@ trackerApp.controller('mapCtrl', function ($scope,$http,$interval) {
                 bounds.extend(new google.maps.LatLng($scope.markers[i].latitude,$scope.markers[i].longitude));
             }
             //  Fit these bounds to the map
-            console.log(JSON.stringify(bounds));
+            //console.log(JSON.stringify(bounds));
             //var map = $scope.mapObject.getGMap();//bounds = bounds;
             if($scope.markers.length > 0){
             	$scope.map.center = {latitude:$scope.markers[$scope.markers.length - 1].latitude,longitude:$scope.markers[$scope.markers.length - 1].longitude};
@@ -80,19 +80,23 @@ trackerApp.controller('mapCtrl', function ($scope,$http,$interval) {
 	$scope.getPathList = function(){
 		$http.get('getpath.php?plate_number=' + $scope.plate_number).
 		  success(function(result){
-				angular.forEach(result,function(smarker){
+			  angular.forEach(result,function(tracking_route){
+				  
+				angular.forEach(JSON.parse(tracking_route.tracking_data),function(smarker){
 					if(!$scope.markerExists(smarker)){
+						smarker.id = "maker" + ($scope.markers.length + 1);
 						smarker.coords = {latitude:smarker.latitude,longitude:smarker.longitude};
 						if(!smarker.overspeeding){
 							smarker.options ={
 							    icon:'//maps.google.com/mapfiles/ms/icons/green-dot.png'
 							};
 						}
-						
+						console.log("Marker:" + JSON.stringify(smarker));
 						$scope.markers.push(smarker);
 						$scope.autoCenter();
 					}
 				});
+			  });
 				
 		  }).
 		  error(function(err){

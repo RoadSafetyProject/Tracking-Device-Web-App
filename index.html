@@ -35,12 +35,16 @@
 </head>
 <body ng-controller="mapCtrl">
 <div class="angular-google-map-container">
-
-<div class="form">
-	<div class="panel panel-default">
-  <div class="panel-heading">Vehicle Tracking Filter</div>
-  <div class="panel-body">
-		<div class="form-group">
+<button type="button" class="form btn btn-primary btn-md" data-toggle="modal" data-target="#myModal">Filter Vehicle</button>
+<div class="modal fade"  id="myModal" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Vehicle Tracking Filter</h4>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
 		  	<label for="plate_number">Vehicle Plate Number:</label>
 			<input ng-model="plate_number" type="text" class="form-control" id="plate_number">
 		</div>
@@ -83,9 +87,14 @@
 				</div>
 			</div>
 		</div>
-	</div>
-</div>
-</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
 <div class="keys">
 <div class="panel panel-default">
   <div class="panel-heading">Key</div>

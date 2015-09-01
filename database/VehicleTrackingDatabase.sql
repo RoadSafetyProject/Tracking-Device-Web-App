@@ -5,11 +5,12 @@
 CREATE TABLE vehicle_tracker(
 	id SERIAL PRIMARY KEY,
 	vehicle_id INTEGER REFERENCES vehicle (id),
-	latitude	Decimal(9,6) NOT NULL,
-	longitude	Decimal(10,6) NOT NULL,
-	altitude	VARCHAR(20),
-	velocity	INTEGER ,
-	tracking_time	TIMESTAMP
+	--latitude	Decimal(9,6) NOT NULL,
+	--longitude	Decimal(10,6) NOT NULL,
+	--altitude	VARCHAR(20),
+	--velocity	INTEGER ,
+	tracking_data	TEXT,
+	tracking_date	DATE
 );
 CREATE TABLE routes(
 	id SERIAL PRIMARY KEY,
