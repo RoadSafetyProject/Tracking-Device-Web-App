@@ -1,0 +1,4 @@
+﻿INSERT INTO vehicle_tracker(vehicle_id,tracking_data,tracking_date) 
+	VALUES 
+		(1,'[{"latitude":-6.761367, "longitude":39.226867,"altitude":40,"velocity":40,"time":1},{"latitude":-6.763497, "longitude":39.228326,"altitude":50,"velocity":50,"time":1},{"latitude":-6.764392, "longitude":39.229227,"altitude":60,"velocity":60,"time":1},{"latitude":-6.765245, "longitude":39.230472,"altitude":40,"velocity":40,"time":1},titude":-6.766182, "longitude":39.231717,"altitude":40,"velocity":40,"time":1},{"latitude":-6.768271, "longitude":39.234420,"altitude":30,"velocity":30,"time":1},{"latitude":-6.769421, "longitude":39.235879,"altitude":30,"velocity":30,"time":1},{"latitude":-6.770401, "longitude":39.237167,"altitude":20,"velocity":20,"time":1},{"latitude":-6.771552, "longitude":39.238497,"altitude":20,"velocity":20,"time":1}]',CURRENT_DATE)
+	;
