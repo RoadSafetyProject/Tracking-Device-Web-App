@@ -108,7 +108,7 @@
 </div>
 <ui-gmap-google-map control='mapObject' center='map.center' zoom='map.zoom'>
 	
-	<ui-gmap-marker options="marker.options" ng-repeat="marker in markers | filter:showMarkers" coords="marker.coords" idkey="marker.id">
+	<ui-gmap-marker options="marker.options" ng-repeat="marker in markers" coords="marker.coords" idkey="marker.id">
 		<ui-gmap-window options="windowOptions" closeClick="closeClick()">
 			<div>
 			Vehicle {{plate_number}}

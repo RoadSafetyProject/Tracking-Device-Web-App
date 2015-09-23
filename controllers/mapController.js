@@ -81,17 +81,17 @@ trackerApp.controller('mapCtrl', function ($scope,$http,$interval) {
 		$http.get('getpath.php?plate_number=' + $scope.plate_number).
 		  success(function(result){
 			  angular.forEach(result,function(tracking_route){
-				  
+				  var routes = JSON.parse(tracking_route.tracking_data);
+				console.log(routes.length);
 				angular.forEach(JSON.parse(tracking_route.tracking_data),function(smarker){
 					if(!$scope.markerExists(smarker)){
 						smarker.id = "maker" + ($scope.markers.length + 1);
 						smarker.coords = {latitude:smarker.latitude,longitude:smarker.longitude};
+						smarker.options = {};
 						if(!smarker.overspeeding){
-							smarker.options ={
-							    icon:'//maps.google.com/mapfiles/ms/icons/green-dot.png'
-							};
+							smarker.options.icon = '//maps.google.com/mapfiles/ms/icons/green-dot.png';
 						}
-						console.log("Marker:" + JSON.stringify(smarker));
+						//console.log("Marker:" + JSON.stringify(smarker));
 						$scope.markers.push(smarker);
 						$scope.autoCenter();
 					}
